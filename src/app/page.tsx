@@ -83,7 +83,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* EuroGrid - Coming Soon */}
+            {/* Linkup - Coming Soon */}
             <div
               className="
                 relative
@@ -96,13 +96,13 @@ export default function Home() {
               <div className="flex items-start justify-between">
                 <div>
                   <h2 className="text-2xl sm:text-3xl font-bold mb-2">
-                    EuroGrid
+                    Linkup
                   </h2>
                   <p className="text-[var(--foreground)]/70">
-                    Football players by club & country
+                    Find 4 groups of 4 connected words
                   </p>
                 </div>
-                <div className="text-4xl sm:text-5xl">⚽</div>
+                <div className="text-4xl sm:text-5xl">🔗</div>
               </div>
               <div className="mt-4">
                 <span className="px-2 py-1 bg-[var(--warning)]/20 text-[var(--warning)] rounded-full text-sm font-medium">
