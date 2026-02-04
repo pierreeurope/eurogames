@@ -5,10 +5,9 @@ import {
   GameBoard,
   Keyboard,
   StatsModal,
-  Toast,
-  Header,
   HelpModal,
 } from '@/components/games/wurdle';
+import { GameHeader, Toast } from '@/components/shared';
 import { useWurdle } from '@/hooks/useWurdle';
 
 export default function WurdlePage() {
@@ -68,12 +67,15 @@ export default function WurdlePage() {
 
   return (
     <div className="min-h-dvh flex flex-col bg-[var(--background)]">
-      <Header
+      <GameHeader
+        title="Wurdle"
+        emoji="🟩"
         onStatsClick={() => setShowStats(true)}
         onHelpClick={() => setShowHelp(true)}
+        accentColor="var(--success)"
       />
 
-      <main className="flex-1 flex flex-col items-center justify-between py-4 sm:py-6 px-2">
+      <main className="flex-1 flex flex-col items-center justify-between py-4 sm:py-6 px-2 page-enter">
         {/* Game Board */}
         <div className="flex-1 flex items-center justify-center">
           <GameBoard
