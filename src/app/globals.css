@@ -1,26 +1,227 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  /* EuroGames Brand Colors */
+  --primary: #1a365d;
+  --accent: #FFD700;
+  --success: #22c55e;
+  --warning: #eab308;
+  --error: #ef4444;
+  
+  /* Light mode */
+  --background: #fafafa;
   --foreground: #171717;
+  --tile-bg: #ffffff;
+  --tile-border: #d4d6da;
+  --tile-text: #1a1a1b;
+  --key-bg: #d3d6da;
+  --key-text: #1a1a1b;
+  --modal-bg: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    --tile-bg: #1e293b;
+    --tile-border: #3d5a80;
+    --tile-text: #f1f5f9;
+    --key-bg: #475569;
+    --key-text: #f1f5f9;
+    --modal-bg: #1e293b;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Wurdle Tile Animations */
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(-90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes bounce {
+  0%, 20% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+  80% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tile-flip {
+  animation: flip 0.5s ease-in-out forwards;
+}
+
+.tile-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.tile-bounce {
+  animation: bounce 0.5s ease-in-out forwards;
+}
+
+.tile-pop {
+  animation: pop 0.1s ease-in-out;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+/* Tile state colors */
+.tile-correct {
+  background-color: var(--success) !important;
+  border-color: var(--success) !important;
+  color: white !important;
+}
+
+.tile-present {
+  background-color: var(--warning) !important;
+  border-color: var(--warning) !important;
+  color: white !important;
+}
+
+.tile-absent {
+  background-color: #787c7e !important;
+  border-color: #787c7e !important;
+  color: white !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tile-absent {
+    background-color: #3a3a3c !important;
+    border-color: #3a3a3c !important;
+  }
+}
+
+/* Key state colors */
+.key-correct {
+  background-color: var(--success) !important;
+  color: white !important;
+}
+
+.key-present {
+  background-color: var(--warning) !important;
+  color: white !important;
+}
+
+.key-absent {
+  background-color: #787c7e !important;
+  color: white !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .key-absent {
+    background-color: #3a3a3c !important;
+  }
+}
+
+/* Toast notification */
+.toast {
+  animation: slideUp 0.3s ease-out, fadeIn 0.3s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tile-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--key-bg);
 }
